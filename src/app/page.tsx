@@ -1,9 +1,8 @@
-const HomePage = () => {
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            Event planning app
-        </main>
-    );
+import { auth } from '@/auth';
+
+const HomePage = async () => {
+    const session = await auth();
+    return <main>{JSON.stringify(session, null, 2)}</main>;
 };
 
 export default HomePage;

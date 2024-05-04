@@ -1,11 +1,12 @@
 import '@/app/globals.css';
-import { Inter as FontSans } from 'next/font/google';
-import { cn } from '@/lib/utils';
+import { Header } from '@/components/header';
+
+import { Inter as FontInter } from 'next/font/google';
 import { FunctionComponent, ReactNode } from 'react';
 
-const fontSans = FontSans({
+const fontInter = FontInter({
     subsets: ['latin'],
-    variable: '--font-sans',
+    variable: '--font-inter',
 });
 
 interface RootLayoutProps {
@@ -14,15 +15,13 @@ interface RootLayoutProps {
 
 const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => {
     return (
-        <html lang="en">
+        <html lang="en" className={fontInter.className}>
             <head />
-            <body
-                className={cn(
-                    'min-h-screen bg-background font-sans antialiased',
-                    fontSans.variable
-                )}
-            >
-                {children}
+            <body suppressHydrationWarning={true}>
+                <main className="min-h-screen">
+                    <Header />
+                    {children}
+                </main>
             </body>
         </html>
     );
