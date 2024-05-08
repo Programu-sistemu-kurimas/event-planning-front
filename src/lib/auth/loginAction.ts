@@ -21,7 +21,7 @@ export const onLoginAction = async (
         }
 
         return {
-            errorMessage: 'Invalid form data',
+            errorMessage: 'Klaidingai suvesti formos duomenys',
             fields,
         };
     }
@@ -34,7 +34,7 @@ export const onLoginAction = async (
         });
     } catch (e) {
         return {
-            errorMessage: 'Unauthorized',
+            errorMessage: 'Neteisingi prisijungimo duomenys',
             fields: validatedFormData.data,
         };
     }

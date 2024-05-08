@@ -52,14 +52,14 @@ const providers: Provider[] = [
             });
 
             if (!res.ok) {
-                throw new Error('Unauthorized');
+                throw new Error('Neteisingi prisijungimo duomenys');
             }
 
             const user = await res.json();
             const validatedUser = userSchema.safeParse(user);
 
             if (!validatedUser.success) {
-                throw new Error('Incorrect server response');
+                throw new Error('Klaida grąžinant vartotojo duomenis');
             }
 
             return {

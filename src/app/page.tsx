@@ -1,8 +1,7 @@
-import { auth } from '@/auth';
+import { Container } from '@/components/common';
 
 const HomePage = async () => {
-    const session = await auth();
-    return <main>{JSON.stringify(session, null, 2)}</main>;
+    return <Container>Homepage</Container>;
 };
 
 export default HomePage;

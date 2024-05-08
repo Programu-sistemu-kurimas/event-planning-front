@@ -22,7 +22,7 @@ export const onRegisterAction = async (
         }
 
         return {
-            errorMessage: 'Invalid form data',
+            errorMessage: 'Klaidingai suvesti formos duomenys',
             fields,
         };
     }
@@ -35,10 +35,11 @@ export const onRegisterAction = async (
             }),
         });
 
-        if (!res.ok) throw new Error('Server error');
+        if (!res.ok)
+            throw new Error('Nepavyko užregistruoti - serverio klaida');
     } catch {
         return {
-            errorMessage: 'Server error',
+            errorMessage: 'Nepavyko užregistruoti - serverio klaida',
             fields: validatedFormData.data,
         };
     }

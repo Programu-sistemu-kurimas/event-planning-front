@@ -1,12 +1,14 @@
 import '@/app/globals.css';
+
 import { Header } from '@/components/header';
-
-import { Inter as FontInter } from 'next/font/google';
+import { Red_Hat_Display as FontRedHatDisplay } from 'next/font/google';
 import { FunctionComponent, ReactNode } from 'react';
+import backgroundImage from '../../public/background.png';
 
-const fontInter = FontInter({
+const fontRedHatDisplay = FontRedHatDisplay({
     subsets: ['latin'],
-    variable: '--font-inter',
+    weight: ['400', '500', '600', '700'],
+    variable: '--font-red-hat-display',
 });
 
 interface RootLayoutProps {
@@ -15,10 +17,17 @@ interface RootLayoutProps {
 
 const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => {
     return (
-        <html lang="en" className={fontInter.className}>
+        <html lang="en" className={fontRedHatDisplay.className}>
             <head />
             <body suppressHydrationWarning={true}>
-                <main className="min-h-screen">
+                <main
+                    className="min-h-screen bg-background text-white"
+                    style={{
+                        backgroundImage: `url(${backgroundImage.src})`,
+                        backgroundSize: 'cover',
+                        backgroundAttachment: 'fixed',
+                    }}
+                >
                     <Header />
                     {children}
                 </main>

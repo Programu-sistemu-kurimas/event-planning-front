@@ -1,20 +1,13 @@
 'use client';
 
-import { Button } from '@/components/common/Button';
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/common/Form';
-import { Input } from '@/components/common/Input';
+import { Alert, Button } from '@/components/common';
+import { FormInput } from '@/components/form';
 import { useLogin } from '@/lib/auth';
 import { FormEvent, useRef } from 'react';
+import { FormProvider } from 'react-hook-form';
 
 export const LoginForm = () => {
-    const { form, formAction, state } = useLogin();
+    const { formAction, form, state } = useLogin();
 
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -27,47 +20,25 @@ export const LoginForm = () => {
     };
 
     return (
-        <Form {...form}>
-            <span className="text-destructive">{state?.errorMessage}</span>
+        <FormProvider {...form}>
             <form
                 onSubmit={onSubmit}
                 action={formAction}
                 ref={formRef}
-                className="space-y-8"
+                className="flex-col flex items-center gap-16"
+                noValidate
             >
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="email@gmail.com"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Password</FormLabel>
-                            <FormControl>
-                                <Input placeholder="password1234" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="flex items-end justify-end">
-                    <Button type="submit">Login</Button>
+                <div className="flex flex-col gap-5 w-[292px]">
+                    <FormInput name="email" placeholder="El. paštas" />
+                    <FormInput name="password" placeholder="Slaptažodis" />
+                </div>
+                <div className="flex items-center gap-5 flex-col w-full">
+                    {state.errorMessage && <Alert>{state.errorMessage}</Alert>}
+                    <Button type="submit" variant="green">
+                        Prisijungti
+                    </Button>
                 </div>
             </form>
-        </Form>
+        </FormProvider>
     );
 };

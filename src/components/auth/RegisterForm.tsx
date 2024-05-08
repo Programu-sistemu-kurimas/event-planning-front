@@ -1,17 +1,10 @@
 'use client';
 
-import { Button } from '@/components/common/Button';
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/common/Form';
-import { Input } from '@/components/common/Input';
+import { Alert, Button } from '@/components/common';
+import { FormInput } from '@/components/form';
 import { FormEvent, useRef } from 'react';
 import { useRegister } from '@/lib/auth';
+import { FormProvider } from 'react-hook-form';
 
 export const RegisterForm = () => {
     const { form, formAction, state } = useRegister();
@@ -27,70 +20,26 @@ export const RegisterForm = () => {
     };
 
     return (
-        <Form {...form}>
-            <span className="text-destructive">{state?.errorMessage}</span>
+        <FormProvider {...form}>
             <form
                 onSubmit={onSubmit}
                 action={formAction}
                 ref={formRef}
-                className="space-y-8"
+                className="flex-col flex items-center gap-16"
             >
-                <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                                <Input placeholder="name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="surname"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Surname</FormLabel>
-                            <FormControl>
-                                <Input placeholder="surname" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                                <Input placeholder="email" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Password</FormLabel>
-                            <FormControl>
-                                <Input placeholder="password" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="flex items-end justify-end">
-                    <Button type="submit">Register</Button>
+                <div className="flex flex-col gap-5 w-[292px]">
+                    <FormInput name="name" placeholder="Vardas" />
+                    <FormInput name="surname" placeholder="Pavardė" />
+                    <FormInput name="email" placeholder="El. paštas" />
+                    <FormInput name="password" placeholder="Slaptažodis" />
+                </div>
+                <div className="flex items-center gap-5 flex-col w-full">
+                    {state.errorMessage && <Alert>{state.errorMessage}</Alert>}
+                    <Button type="submit" variant="green">
+                        Registruotis
+                    </Button>
                 </div>
             </form>
-        </Form>
+        </FormProvider>
     );
 };

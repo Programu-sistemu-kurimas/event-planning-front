@@ -6,7 +6,12 @@ export const config = {
     matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
 
-const PUBLIC_ROUTES = [ROUTES.HOME, ROUTES.AUTH.LOGIN, ROUTES.AUTH.REGISTER];
+const PUBLIC_ROUTES = [
+    ROUTES.HOME,
+    ROUTES.ABOUT_PAGE,
+    ROUTES.AUTH.LOGIN,
+    ROUTES.AUTH.REGISTER,
+];
 const NOT_AUTHORIZED_ONLY_ROUTES = [ROUTES.AUTH.LOGIN, ROUTES.AUTH.REGISTER];
 
 export default auth((req) => {

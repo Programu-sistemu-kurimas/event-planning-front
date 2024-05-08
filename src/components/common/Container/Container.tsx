@@ -6,7 +6,7 @@ interface ContainerProps {
     children: ReactNode;
 }
 
-export const Container: FunctionComponent<ContainerProps> = ({
+const Container: FunctionComponent<ContainerProps> = ({
     className,
     children,
 }) => (
@@ -14,3 +14,5 @@ export const Container: FunctionComponent<ContainerProps> = ({
         {children}
     </div>
 );
+
+export default Container;

@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@/components/common/Button';
 import { ROUTES } from '@/constants';
 import Link from 'next/link';
 import { signOut } from '@/lib/auth/helpers';
@@ -11,34 +10,47 @@ interface NavbarProps {
     user?: User;
 }
 
+const baseNavbarItemStyle = 'text-xl xl:text-3xl font-normal hover:underline';
+
 const Navbar: FunctionComponent<NavbarProps> = ({ user }) => {
     return (
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-8">
+            <ul>
+                <Link href={ROUTES.ABOUT_PAGE} className={baseNavbarItemStyle}>
+                    Apie programėlę
+                </Link>
+            </ul>
             {user && (
-                <ul>
-                    <Button
-                        variant="link"
-                        onClick={async () => {
-                            signOut();
-                        }}
-                    >
-                        Log out
-                    </Button>
-                </ul>
-            )}
-            {!user && (
                 <>
                     <ul>
-                        <Button asChild variant="link">
-                            <Link href={ROUTES.AUTH.LOGIN}>Login</Link>
-                        </Button>
+                        <Link
+                            href={ROUTES.PROJECTS}
+                            className={baseNavbarItemStyle}
+                        >
+                            Projektai
+                        </Link>
                     </ul>
                     <ul>
-                        <Button asChild variant="link">
-                            <Link href={ROUTES.AUTH.REGISTER}>Register</Link>
-                        </Button>
+                        <button
+                            className={baseNavbarItemStyle}
+                            onClick={async () => {
+                                signOut();
+                            }}
+                        >
+                            Atsijungti
+                        </button>
                     </ul>
                 </>
+            )}
+            {!user && (
+                <ul>
+                    <Link
+                        href={ROUTES.AUTH.LOGIN}
+                        className={baseNavbarItemStyle}
+                    >
+                        Prisijungti
+                    </Link>
+                </ul>
             )}
         </nav>
     );
