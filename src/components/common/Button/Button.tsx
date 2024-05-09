@@ -12,9 +12,9 @@ const buttonVariantStyles = cva(
                 custom: '',
             },
             size: {
-                sm: 'px-2 py-1 text-2xl',
-                md: 'px-4 py-2 text-3xl',
-                lg: 'px-8 py-4 text-3xl',
+                sm: 'px-2 py-1 text-lg xl:text-2xl',
+                md: 'px-4 py-2 text-lg xl:text-3xl',
+                lg: 'px-8 py-4 text-lg xl:text-3xl',
             },
         },
         defaultVariants: {
