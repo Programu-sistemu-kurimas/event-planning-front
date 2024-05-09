@@ -1,7 +1,10 @@
 export const ROUTES = {
     HOME: '/',
     ABOUT_PAGE: '/about',
-    PROJECTS: '/projects',
+    PROJECTS: {
+        BASE: '/projects',
+        CREATE: '/projects/create',
+    },
     AUTH: {
         LOGIN: '/login',
         REGISTER: '/register',

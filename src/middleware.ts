@@ -25,6 +25,6 @@ export default auth((req) => {
     }
 
     if (req.auth && NOT_AUTHORIZED_ONLY_ROUTES.includes(reqUrl.pathname)) {
-        return NextResponse.redirect(new URL(ROUTES.PROJECTS, reqUrl));
+        return NextResponse.redirect(new URL(ROUTES.PROJECTS.BASE, reqUrl));
     }
 });

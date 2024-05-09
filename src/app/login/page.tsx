@@ -3,7 +3,7 @@ import { Container } from '@/components/common';
 import { ROUTES } from '@/constants';
 import Link from 'next/link';
 
-const LoginPage = async () => {
+const LoginPage = () => {
     return (
         <Container className="flex items-center flex-col gap-32 text-5xl">
             <h1>Prisijungimas</h1>

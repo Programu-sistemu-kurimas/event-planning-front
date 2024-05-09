@@ -2,11 +2,11 @@ import { Button, Container } from '@/components/common';
 import { ROUTES } from '@/constants';
 import Link from 'next/link';
 
-const HomePage = async () => {
+const HomePage = () => {
     return (
         <Container>
-            <div className="flex flex-col gap-20">
-                <div className="flex flex-col mt-32 gap-4">
+            <div className="flex flex-col gap-20 mt-32">
+                <div className="flex flex-col gap-4">
                     <h1 className="text-2xl xl:text-4xl font-bold">
                         Renginių planavimo programėlė
                     </h1>

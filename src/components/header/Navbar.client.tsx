@@ -24,7 +24,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({ user }) => {
                 <>
                     <ul>
                         <Link
-                            href={ROUTES.PROJECTS}
+                            href={ROUTES.PROJECTS.BASE}
                             className={baseNavbarItemStyle}
                         >
                             Projektai

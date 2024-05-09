@@ -1,6 +1,6 @@
 import { Container } from '@/components/common';
 
-const AboutPage = async () => {
+const AboutPage = () => {
     // TODO: Implement about page
     return (
         <main>
