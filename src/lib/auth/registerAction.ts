@@ -28,7 +28,7 @@ export const onRegisterAction = async (
     }
 
     try {
-        const res = await apiFetch(API_ROUTES.AUTH.REGISTER, {
+        const res = await apiFetch(API_ROUTES.USER.REGISTER, {
             method: 'POST',
             body: JSON.stringify({
                 ...validatedFormData.data,

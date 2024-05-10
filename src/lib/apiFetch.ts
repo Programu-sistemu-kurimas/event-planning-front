@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
 
-export const apiFetch = async (url: string, init: RequestInit) => {
+export const apiFetch = async (url: string, init?: RequestInit) => {
     const session = await auth();
 
     const defaultHeaders = {
@@ -16,7 +16,7 @@ export const apiFetch = async (url: string, init: RequestInit) => {
         credentials: 'include',
         headers: {
             ...defaultHeaders,
-            ...init.headers,
+            ...init?.headers,
         },
     });
 };

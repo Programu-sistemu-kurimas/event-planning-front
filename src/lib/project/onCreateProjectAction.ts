@@ -5,6 +5,7 @@ import { API_ROUTES, ROUTES } from '@/constants';
 import { createProjectFormSchema } from './schema';
 import { FormState } from '@/types/formState';
 import { apiFetch } from '@/lib/apiFetch';
+import { revalidatePath } from 'next/cache';
 
 export const onCreateProjectAction = async (
     _prevState: FormState,
@@ -41,5 +42,6 @@ export const onCreateProjectAction = async (
         };
     }
 
+    revalidatePath(API_ROUTES.USER.PROJECTS);
     redirect(ROUTES.PROJECTS.BASE);
 };
