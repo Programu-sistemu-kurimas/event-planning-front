@@ -4,19 +4,21 @@ import { cn } from '@/lib/utils';
 import { useFormContext } from 'react-hook-form';
 import { WithClassNames } from '@/types/classNames';
 
-interface FormInputProps
-    extends React.InputHTMLAttributes<HTMLInputElement>,
+interface FormTextAreaProps
+    extends React.InputHTMLAttributes<HTMLTextAreaElement>,
         WithClassNames<'container' | 'error'> {
     name: string;
+    rows?: number;
+    cols?: number;
     label?: string;
 }
 
-const FormInput: FunctionComponent<FormInputProps> = ({
+const FormTextArea: FunctionComponent<FormTextAreaProps> = ({
     name,
     label,
     className,
     classNames,
-    ...inputProps
+    ...textAreaProps
 }) => {
     const {
         register,
@@ -35,14 +37,13 @@ const FormInput: FunctionComponent<FormInputProps> = ({
                     {label}
                 </span>
             )}
-            <input
+            <textarea
                 className={cn(
-                    'font-normal text-xl w-full px-8 py-4 rounded-full text-white active:outline-secondary border-0 focus:outline-2 focus:outline-secondary bg-primary outline-none',
-                    'placeholder:text-center placeholder:text-xl placeholder:lg:text-3xl placeholder:text-secondaryLight',
+                    'font-normal text-xl w-full px-8 py-6 rounded-full text-white active:outline-secondary border-0 focus:outline-2 focus:outline-secondary bg-primary outline-none',
                     className
                 )}
                 {...register(name)}
-                {...inputProps}
+                {...textAreaProps}
             />
 
             {errors && (
@@ -59,4 +60,4 @@ const FormInput: FunctionComponent<FormInputProps> = ({
     );
 };
 
-export default FormInput;
+export default FormTextArea;

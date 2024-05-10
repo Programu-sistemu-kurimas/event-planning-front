@@ -6,6 +6,10 @@ import { FormEvent, useRef } from 'react';
 import { useRegister } from '@/lib/auth';
 import { FormProvider } from 'react-hook-form';
 
+const baseFormInputClassnames = {
+    error: 'self-center',
+};
+
 export const RegisterForm = () => {
     const { form, formAction, state } = useRegister();
 
@@ -28,10 +32,26 @@ export const RegisterForm = () => {
                 className="flex-col flex items-center gap-16"
             >
                 <div className="flex flex-col gap-5 w-[292px]">
-                    <FormInput name="name" placeholder="Vardas" />
-                    <FormInput name="surname" placeholder="Pavardė" />
-                    <FormInput name="email" placeholder="El. paštas" />
-                    <FormInput name="password" placeholder="Slaptažodis" />
+                    <FormInput
+                        name="name"
+                        placeholder="Vardas"
+                        classNames={baseFormInputClassnames}
+                    />
+                    <FormInput
+                        name="surname"
+                        placeholder="Pavardė"
+                        classNames={baseFormInputClassnames}
+                    />
+                    <FormInput
+                        name="email"
+                        placeholder="El. paštas"
+                        classNames={baseFormInputClassnames}
+                    />
+                    <FormInput
+                        name="password"
+                        placeholder="Slaptažodis"
+                        classNames={baseFormInputClassnames}
+                    />
                 </div>
                 <div className="flex items-center gap-5 flex-col w-full">
                     {state.errorMessage && <Alert>{state.errorMessage}</Alert>}

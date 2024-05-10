@@ -6,6 +6,10 @@ import { useLogin } from '@/lib/auth';
 import { FormEvent, useRef } from 'react';
 import { FormProvider } from 'react-hook-form';
 
+const baseFormInputClassnames = {
+    error: 'self-center',
+};
+
 export const LoginForm = () => {
     const { formAction, form, state } = useLogin();
 
@@ -29,8 +33,16 @@ export const LoginForm = () => {
                 noValidate
             >
                 <div className="flex flex-col gap-5 w-[292px]">
-                    <FormInput name="email" placeholder="El. paštas" />
-                    <FormInput name="password" placeholder="Slaptažodis" />
+                    <FormInput
+                        name="email"
+                        placeholder="El. paštas"
+                        classNames={baseFormInputClassnames}
+                    />
+                    <FormInput
+                        name="password"
+                        placeholder="Slaptažodis"
+                        classNames={baseFormInputClassnames}
+                    />
                 </div>
                 <div className="flex items-center gap-5 flex-col w-full">
                     {state.errorMessage && <Alert>{state.errorMessage}</Alert>}
