@@ -43,7 +43,7 @@ const providers: Provider[] = [
             },
         },
         async authorize(credentials): Promise<User> {
-            const res = await apiFetch(API_ROUTES.AUTH.LOGIN, {
+            const res = await apiFetch(API_ROUTES.USER.LOGIN, {
                 method: 'POST',
                 body: JSON.stringify({
                     email: credentials.email,

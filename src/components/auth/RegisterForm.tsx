@@ -51,6 +51,7 @@ export const RegisterForm = () => {
                         name="password"
                         placeholder="Slaptažodis"
                         classNames={baseFormInputClassnames}
+                        type="password"
                     />
                 </div>
                 <div className="flex items-center gap-5 flex-col w-full">

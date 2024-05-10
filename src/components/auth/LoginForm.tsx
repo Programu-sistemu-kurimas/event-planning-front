@@ -42,6 +42,7 @@ export const LoginForm = () => {
                         name="password"
                         placeholder="Slaptažodis"
                         classNames={baseFormInputClassnames}
+                        type="password"
                     />
                 </div>
                 <div className="flex items-center gap-5 flex-col w-full">

@@ -15,7 +15,7 @@ const ProjectsPage = async () => {
     const validatedData = projectsSchema.safeParse(data);
 
     if (!validatedData.success) {
-        throw new Error('Klaida su projektų duomenimis');
+        throw new Error('Klaida nuskaitant projektų duomenimis');
     }
 
     const projects = validatedData.data;
