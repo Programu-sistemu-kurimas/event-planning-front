@@ -1,7 +1,7 @@
 'use client';
 
-import { Alert, Button } from '@/components/common';
-import { FormInput } from '@/components/form';
+import { Button } from '@/components/common';
+import { FormError, FormInput } from '@/components/form';
 import { FormEvent, useRef } from 'react';
 import { useRegister } from '@/lib/auth';
 import { FormProvider } from 'react-hook-form';
@@ -54,8 +54,8 @@ export const RegisterForm = () => {
                         type="password"
                     />
                 </div>
-                <div className="flex items-center gap-5 flex-col w-full">
-                    {state.errorMessage && <Alert>{state.errorMessage}</Alert>}
+                <div className="flex items-center gap-4 flex-col w-full">
+                    <FormError message={state.errorMessage} />
                     <Button type="submit" variant="green">
                         Registruotis
                     </Button>

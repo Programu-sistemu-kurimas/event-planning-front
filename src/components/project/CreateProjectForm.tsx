@@ -1,7 +1,7 @@
 'use client';
 
-import { Alert, Button } from '@/components/common';
-import { FormInput, FormTextArea } from '@/components/form';
+import { Button } from '@/components/common';
+import { FormError, FormInput, FormTextArea } from '@/components/form';
 import { ROUTES } from '@/constants';
 import { useCreateProject } from '@/lib/project';
 import Link from 'next/link';
@@ -49,7 +49,7 @@ export const CreateProjectForm = () => {
                     />
                 </div>
                 <div className="flex gap-4 flex-col">
-                    {state.errorMessage && <Alert>{state.errorMessage}</Alert>}
+                    <FormError message={state.errorMessage} />
                     <div className="flex items-center gap-8">
                         <Button
                             type="submit"

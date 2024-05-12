@@ -5,7 +5,8 @@ export const API_ROUTES = {
         PROJECTS: 'users/projects',
     },
     PROJECT: {
+        BASE: 'projects',
         CREATE: 'projects/create',
-        GET_BY_ID: 'projects',
+        ADD_USER: 'projects/addUser',
     },
 };

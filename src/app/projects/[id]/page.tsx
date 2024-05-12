@@ -1,8 +1,11 @@
-import { Container } from '@/components/common';
+import { Button, Container } from '@/components/common';
+import { AddWorkerToProjectModal } from '@/components/modal';
 import { WorkersList } from '@/components/project';
-import { API_ROUTES } from '@/constants';
+import { API_ROUTES, ModalKeys } from '@/constants';
 import { apiFetch } from '@/lib/apiFetch';
+import { getModalLink } from '@/lib/modalLink';
 import { detailedProjectSchema } from '@/schemas';
+import Link from 'next/link';
 import { FunctionComponent } from 'react';
 
 interface ProjectPageProps {
@@ -14,7 +17,7 @@ interface ProjectPageProps {
 const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
     params: { id },
 }) => {
-    const res = await apiFetch(`${API_ROUTES.PROJECT.GET_BY_ID}/${id}`);
+    const res = await apiFetch(`${API_ROUTES.PROJECT.BASE}/${id}`);
 
     if (!res.ok) {
         throw new Error('Klaida gaunant projekto informaciją');
@@ -30,14 +33,24 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
     const project = validatedData.data;
 
     return (
-        <Container>
-            <div className="flex flex-col gap-4">
-                <h1 className="text-2xl xl:text-4xl font-bold">
-                    {project.projectName}
-                </h1>
-                <WorkersList workers={project.workers} />
-            </div>
-        </Container>
+        <>
+            <Container>
+                <div className="flex flex-col gap-8">
+                    <h1 className="text-2xl xl:text-4xl font-bold">
+                        {project.projectName}
+                    </h1>
+                    <div className="flex flex-col gap-32">
+                        <WorkersList workers={project.workers} />
+                        <Link href={getModalLink(ModalKeys.AddWorkerToProject)}>
+                            <Button className="self-start" variant="secondary">
+                                Pridėti darbuotoją
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </Container>
+            <AddWorkerToProjectModal projectId={id} />
+        </>
     );
 };
 

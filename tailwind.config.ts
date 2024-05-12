@@ -17,7 +17,7 @@ const config = {
                 secondary: '#6D5C6A',
                 secondaryLight: '#D9D9D9',
                 success: '#8ACEA9',
-                error: '#B00020',
+                error: '#FF0000',
             },
         },
     },
