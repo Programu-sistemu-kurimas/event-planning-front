@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { FormEvent, useRef } from 'react';
 import { FormProvider } from 'react-hook-form';
 
-export const CreateProjectForm = () => {
+const CreateProjectForm = () => {
     const { formAction, form, state } = useCreateProject();
 
     const formRef = useRef<HTMLFormElement>(null);
@@ -73,3 +73,5 @@ export const CreateProjectForm = () => {
         </FormProvider>
     );
 };
+
+export default CreateProjectForm;

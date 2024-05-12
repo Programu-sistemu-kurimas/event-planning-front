@@ -2,16 +2,16 @@
 
 import { Button } from '@/components/common';
 import { FormError, FormInput } from '@/components/form';
-import { useLogin } from '@/lib/auth';
 import { FormEvent, useRef } from 'react';
+import { useRegister } from '@/lib/auth';
 import { FormProvider } from 'react-hook-form';
 
 const baseFormInputClassnames = {
     error: 'self-center',
 };
 
-export const LoginForm = () => {
-    const { formAction, form, state } = useLogin();
+const RegisterForm = () => {
+    const { form, formAction, state } = useRegister();
 
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -30,9 +30,18 @@ export const LoginForm = () => {
                 action={formAction}
                 ref={formRef}
                 className="flex-col flex items-center gap-16"
-                noValidate
             >
                 <div className="flex flex-col gap-5 w-[292px]">
+                    <FormInput
+                        name="name"
+                        placeholder="Vardas"
+                        classNames={baseFormInputClassnames}
+                    />
+                    <FormInput
+                        name="surname"
+                        placeholder="Pavardė"
+                        classNames={baseFormInputClassnames}
+                    />
                     <FormInput
                         name="email"
                         placeholder="El. paštas"
@@ -48,10 +57,12 @@ export const LoginForm = () => {
                 <div className="flex items-center gap-4 flex-col w-full">
                     <FormError message={state.errorMessage} />
                     <Button type="submit" variant="green">
-                        Prisijungti
+                        Registruotis
                     </Button>
                 </div>
             </form>
         </FormProvider>
     );
 };
+
+export default RegisterForm;
