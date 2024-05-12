@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { API_ROUTES, ROUTES } from '@/constants';
 import { createProjectFormSchema } from './schema';
-import { FormState } from '@/types/formState';
+import { FormState } from '@/types/form';
 import { apiFetch } from '@/lib/apiFetch';
 import { revalidatePath } from 'next/cache';
 

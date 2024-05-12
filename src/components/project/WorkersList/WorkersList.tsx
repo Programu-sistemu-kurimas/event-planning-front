@@ -1,4 +1,8 @@
+import { EditIcon } from '@/components/icon';
+import { ModalKeys } from '@/constants';
+import { getModalLink } from '@/lib/modalLink';
 import type { Worker } from '@/types/worker';
+import Link from 'next/link';
 import { FunctionComponent } from 'react';
 
 interface WorkersListProps {
@@ -20,7 +24,16 @@ const WorkersList: FunctionComponent<WorkersListProps> = ({ workers }) => {
                     <p className="truncate">
                         {name} {surname}
                     </p>
-                    <p>{role}</p>
+                    <div className="flex items-center gap-2">
+                        <p>{role}</p>
+                        <Link
+                            href={getModalLink(ModalKeys.SetWorkerRole, {
+                                userId: id,
+                            })}
+                        >
+                            <EditIcon />
+                        </Link>
+                    </div>
                 </div>
             ))}
         </div>

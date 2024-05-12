@@ -2,17 +2,17 @@
 
 import { redirect } from 'next/navigation';
 import { API_ROUTES, ROUTES } from '@/constants';
-import { addWorkerToProjectFormSchema } from './schema';
+import { setWorkerRoleFormSchema } from './schema';
 import { FormState } from '@/types/form';
 import { apiFetch } from '@/lib/apiFetch';
 import { revalidatePath } from 'next/cache';
 
-export const onAddWorkerToProjectAction = async (
+export const onSetWorkerRoleAction = async (
     _prevState: FormState,
     data: FormData
 ): Promise<FormState> => {
     const formData = Object.fromEntries(data);
-    const validatedFormData = addWorkerToProjectFormSchema.safeParse(formData);
+    const validatedFormData = setWorkerRoleFormSchema.safeParse(formData);
 
     if (!validatedFormData.success) {
         const fields: Record<string, string> = {};
@@ -27,17 +27,18 @@ export const onAddWorkerToProjectAction = async (
         };
     }
 
-    const res = await apiFetch(API_ROUTES.PROJECT.ADD_USER, {
+    const res = await apiFetch(API_ROUTES.PROJECT.SET_ROLE, {
         method: 'POST',
         body: JSON.stringify({
-            email: validatedFormData.data.email,
+            userId: validatedFormData.data.userId,
             projectId: validatedFormData.data.projectId,
+            role: validatedFormData.data.role,
         }),
     });
 
     if (!res.ok) {
         return {
-            errorMessage: 'Nepavyko pridėti darbuotojo prie projekto',
+            errorMessage: 'Nepavyko nustatyti darbuotojo rolės',
             fields: validatedFormData.data,
         };
     }

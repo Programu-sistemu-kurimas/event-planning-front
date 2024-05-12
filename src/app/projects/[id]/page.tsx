@@ -1,5 +1,8 @@
 import { Button, Container } from '@/components/common';
-import { AddWorkerToProjectModal } from '@/components/modal';
+import {
+    AddWorkerToProjectModal,
+    SetWorkerRoleModal,
+} from '@/components/modal';
 import { WorkersList } from '@/components/project';
 import { API_ROUTES, ModalKeys } from '@/constants';
 import { apiFetch } from '@/lib/apiFetch';
@@ -50,6 +53,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                 </div>
             </Container>
             <AddWorkerToProjectModal projectId={id} />
+            <SetWorkerRoleModal />
         </>
     );
 };

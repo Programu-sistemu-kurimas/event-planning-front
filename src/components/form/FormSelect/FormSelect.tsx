@@ -3,20 +3,23 @@ import { ErrorMessage } from '@hookform/error-message';
 import { cn } from '@/lib/utils';
 import { useFormContext } from 'react-hook-form';
 import { WithClassNames } from '@/types/classNames';
+import { Option } from '@/types/form';
 
-interface FormInputProps
-    extends React.InputHTMLAttributes<HTMLInputElement>,
+interface FormSelectProps
+    extends React.InputHTMLAttributes<HTMLSelectElement>,
         WithClassNames<'container' | 'error'> {
     name: string;
+    options: Option[];
     label?: string;
 }
 
-const FormInput: FunctionComponent<FormInputProps> = ({
+const FormSelect: FunctionComponent<FormSelectProps> = ({
     name,
     label,
+    options,
     className,
     classNames,
-    ...inputProps
+    ...selectProps
 }) => {
     const {
         register,
@@ -35,16 +38,21 @@ const FormInput: FunctionComponent<FormInputProps> = ({
                     {label}
                 </span>
             )}
-            <input
+            <select
                 className={cn(
-                    'font-normal text-xl w-full px-8 py-4 rounded-full text-white border-0 bg-primary autofill:bg-primary outline-none',
+                    'font-normal text-xl w-full px-6 border-primary py-4 rounded-xl text-white border-x-8 bg-primary outline-none',
                     'placeholder:text-center placeholder:text-xl placeholder:lg:text-3xl placeholder:text-secondaryLight',
                     className
                 )}
                 {...register(name)}
-                {...inputProps}
-            />
-
+                {...selectProps}
+            >
+                {options.map(({ label, value }) => (
+                    <option value={value} key={`${name}-${value}`}>
+                        {label}
+                    </option>
+                ))}
+            </select>
             {errors && (
                 <div
                     className={cn(
@@ -59,4 +67,4 @@ const FormInput: FunctionComponent<FormInputProps> = ({
     );
 };
 
-export default FormInput;
+export default FormSelect;

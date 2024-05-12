@@ -4,7 +4,7 @@ import { signIn } from '@/auth';
 import { redirect } from 'next/navigation';
 import { ROUTES } from '@/constants';
 import { loginFormSchema } from './schema';
-import { FormState } from '@/types/formState';
+import { FormState } from '@/types/form';
 
 export const onLoginAction = async (
     _prevState: FormState,
