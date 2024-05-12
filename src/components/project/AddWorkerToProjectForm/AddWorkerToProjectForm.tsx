@@ -3,16 +3,15 @@
 import { Button } from '@/components/common';
 import { FormError, FormInput, HiddenInput } from '@/components/form';
 import { useAddWorkerToProject } from '@/lib/project';
-import { FormEvent, FunctionComponent, useRef } from 'react';
+import { useParams } from 'next/navigation';
+import { FormEvent, useRef } from 'react';
 import { FormProvider } from 'react-hook-form';
 
-interface AddWorkerToProjectFormProps {
-    projectId: string;
-}
+const AddWorkerToProjectForm = () => {
+    const { id } = useParams();
 
-const AddWorkerToProjectForm: FunctionComponent<
-    AddWorkerToProjectFormProps
-> = ({ projectId }) => {
+    const projectId = String(id);
+
     const { formAction, form, state } = useAddWorkerToProject({ projectId });
 
     const formRef = useRef<HTMLFormElement>(null);

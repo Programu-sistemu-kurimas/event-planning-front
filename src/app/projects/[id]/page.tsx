@@ -52,7 +52,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                     </div>
                 </div>
             </Container>
-            <AddWorkerToProjectModal projectId={id} />
+            <AddWorkerToProjectModal />
             <SetWorkerRoleModal />
         </>
     );
