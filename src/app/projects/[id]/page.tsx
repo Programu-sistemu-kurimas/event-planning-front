@@ -4,6 +4,7 @@ import {
     SetWorkerRoleModal,
 } from '@/components/modal';
 import { WorkersList } from '@/components/project';
+import { TasksList, QuickTaskCreationForm } from '@/components/task';
 import { API_ROUTES, ModalKeys } from '@/constants';
 import { apiFetch } from '@/lib/apiFetch';
 import { getModalLink } from '@/lib/modalLink';
@@ -37,18 +38,34 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
 
     return (
         <>
-            <Container>
-                <div className="flex flex-col gap-8">
+            <Container className="pb-16">
+                <div className="flex flex-col gap-16">
                     <h1 className="text-2xl xl:text-4xl font-bold">
                         {project.projectName}
                     </h1>
-                    <div className="flex flex-col gap-32">
-                        <WorkersList workers={project.workers} />
-                        <Link href={getModalLink(ModalKeys.AddWorkerToProject)}>
+                    <div className="flex flex-col gap-16">
+                        <div className="flex flex-col gap-8">
+                            <WorkersList workers={project.workers} />
+                            <Link
+                                href={getModalLink(
+                                    ModalKeys.AddWorkerToProject
+                                )}
+                            >
+                                <Button
+                                    className="self-start"
+                                    variant="secondary"
+                                >
+                                    Pridėti darbuotoją
+                                </Button>
+                            </Link>
+                        </div>
+                        <div className="flex flex-col gap-8">
+                            <TasksList tasks={project.tasks} />
+                            <QuickTaskCreationForm />
                             <Button className="self-start" variant="secondary">
-                                Pridėti darbuotoją
+                                Sukurti užduotį
                             </Button>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </Container>

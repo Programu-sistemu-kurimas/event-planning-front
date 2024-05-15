@@ -10,4 +10,7 @@ export const API_ROUTES = {
         ADD_USER: 'projects/addUser',
         SET_ROLE: 'projects/setRole',
     },
+    TASK: {
+        CREATE: 'task/create',
+    },
 };

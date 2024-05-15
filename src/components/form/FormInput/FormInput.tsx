@@ -8,6 +8,7 @@ interface FormInputProps
     extends React.InputHTMLAttributes<HTMLInputElement>,
         WithClassNames<'container' | 'error'> {
     name: string;
+    displayErrors?: boolean;
     label?: string;
 }
 
@@ -16,6 +17,7 @@ const FormInput: FunctionComponent<FormInputProps> = ({
     label,
     className,
     classNames,
+    displayErrors = true,
     ...inputProps
 }) => {
     const {
@@ -45,7 +47,7 @@ const FormInput: FunctionComponent<FormInputProps> = ({
                 {...inputProps}
             />
 
-            {errors && (
+            {displayErrors && errors && (
                 <div
                     className={cn(
                         'text-xl text-error self-start',
