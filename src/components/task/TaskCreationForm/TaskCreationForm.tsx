@@ -1,13 +1,23 @@
 'use client';
 
 import { Button } from '@/components/common';
-import { FormError, FormInput, FormTextArea } from '@/components/form';
-import { useCreateProject } from '@/lib/project';
+import {
+    FormError,
+    FormInput,
+    FormTextArea,
+    HiddenInput,
+} from '@/components/form';
+import { useCreateTask } from '@/lib/task';
+import { useParams } from 'next/navigation';
 import { FormEvent, useRef } from 'react';
 import { FormProvider } from 'react-hook-form';
 
-const CreateProjectForm = () => {
-    const { formAction, form, state } = useCreateProject();
+const TaskCreationForm = () => {
+    const { id } = useParams();
+
+    const projectId = String(id);
+
+    const { formAction, form, state } = useCreateTask({ projectId });
 
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -25,19 +35,20 @@ const CreateProjectForm = () => {
                 onSubmit={onSubmit}
                 action={formAction}
                 ref={formRef}
-                className="flex-col flex gap-12 max-w-3xl"
+                className="flex flex-col gap-12 max-w-3xl"
                 noValidate
             >
                 <div className="flex flex-col items-start gap-8">
                     <FormInput
-                        name="projectName"
+                        name="taskName"
                         label="Pavadinimas"
+                        displayErrors={false}
                         classNames={{
                             container: 'lg:w-1/2 w-full',
                         }}
                     />
                     <FormTextArea
-                        name="projectDescription"
+                        name="taskDescription"
                         label="Aprašymas"
                         rows={4}
                         className="resize-none"
@@ -45,22 +56,17 @@ const CreateProjectForm = () => {
                             container: 'w-full',
                         }}
                     />
+                    <HiddenInput name="projectId" value={projectId} />
                 </div>
-                <div className="flex gap-4 flex-col items-start">
+                <div className="flex flex-col gap-4 items-start">
                     <FormError message={state.errorMessage} />
-                    <div className="flex items-center gap-8">
-                        <Button
-                            type="submit"
-                            variant="secondary"
-                            className="flex-1"
-                        >
-                            Sukurti naują projektą
-                        </Button>
-                    </div>
+                    <Button type="submit" variant="secondary">
+                        Sukurti užduotį
+                    </Button>
                 </div>
             </form>
         </FormProvider>
     );
 };
 
-export default CreateProjectForm;
+export default TaskCreationForm;
