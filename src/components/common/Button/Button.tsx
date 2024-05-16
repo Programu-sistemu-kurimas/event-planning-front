@@ -9,6 +9,8 @@ const buttonVariantStyles = cva(
                 primary: 'bg-primary',
                 secondary: 'bg-secondary',
                 green: 'bg-success',
+                darkGreen: 'bg-successDark',
+                red: 'bg-errorLight',
                 custom: '',
             },
             size: {

@@ -1,11 +1,13 @@
+import { auth } from '@/auth';
 import { Button, Container } from '@/components/common';
 import {
     AddWorkerToProjectModal,
+    DeleteProjectModal,
     SetWorkerRoleModal,
 } from '@/components/modal';
-import { WorkersList } from '@/components/project';
+import { ProjectPurgeActions, WorkersList } from '@/components/project';
 import { TasksList, QuickTaskCreationForm } from '@/components/task';
-import { API_ROUTES, ModalKeys, ROUTES } from '@/constants';
+import { API_ROUTES, ModalKeys, ROUTES, Roles } from '@/constants';
 import { apiFetch } from '@/lib/apiFetch';
 import { getModalLink } from '@/lib/modalLink';
 import { applyRouteParams } from '@/lib/utils';
@@ -41,13 +43,22 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
 
     const project = validatedData.data;
 
+    const session = await auth();
+
+    const isOwner =
+        project.workers.find((worker) => worker.email === session?.user?.email)
+            ?.role === Roles.Enum.Owner;
+
     return (
         <>
             <Container className="pb-16">
                 <div className="flex flex-col gap-16">
-                    <h1 className="text-2xl xl:text-4xl font-bold">
-                        {project.projectName}
-                    </h1>
+                    <div className="flex justify-between items-center gap-56">
+                        <h1 className="text-2xl xl:text-4xl font-bold truncate">
+                            {project.projectName}
+                        </h1>
+                        {isOwner && <ProjectPurgeActions />}
+                    </div>
                     <div className="flex flex-col gap-16">
                         <div className="flex flex-col gap-8">
                             <WorkersList workers={project.workers} />
@@ -88,6 +99,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
             </Container>
             <AddWorkerToProjectModal />
             <SetWorkerRoleModal />
+            <DeleteProjectModal />
         </>
     );
 };

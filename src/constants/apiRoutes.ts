@@ -10,6 +10,7 @@ export const API_ROUTES = {
         CREATE: 'projects/create',
         ADD_USER: 'projects/addUser',
         SET_ROLE: 'projects/setRole',
+        DELETE: 'projects/{id}',
     },
     TASK: {
         CREATE: 'task/create',

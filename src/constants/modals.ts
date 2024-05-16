@@ -2,4 +2,5 @@
 export enum ModalKeys {
     AddWorkerToProject = 'addWorkerToProject',
     SetWorkerRole = 'setWorkerRole',
+    DeleteProject = 'deleteProject',
 }
