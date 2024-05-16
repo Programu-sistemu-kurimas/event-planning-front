@@ -6,6 +6,7 @@ import { addWorkerToProjectFormSchema } from './schema';
 import { FormState } from '@/types/form';
 import { apiFetch } from '@/lib/apiFetch';
 import { revalidatePath } from 'next/cache';
+import { applyRouteParams } from '@/lib/utils';
 
 export const onAddWorkerToProjectAction = async (
     _prevState: FormState,
@@ -42,8 +43,16 @@ export const onAddWorkerToProjectAction = async (
         };
     }
 
-    const projectId = validatedFormData.data.projectId;
+    const id = validatedFormData.data.projectId;
 
-    revalidatePath(`${API_ROUTES.PROJECT.BASE}/${projectId}`);
-    redirect(`${ROUTES.PROJECTS.BASE}/${projectId}`);
+    revalidatePath(
+        applyRouteParams(API_ROUTES.PROJECT.GET_BY_ID, {
+            id,
+        })
+    );
+    redirect(
+        applyRouteParams(ROUTES.PROJECTS.SINGLE_PROJECT, {
+            id,
+        })
+    );
 };

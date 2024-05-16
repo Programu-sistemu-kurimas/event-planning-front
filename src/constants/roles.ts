@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { Option } from '@/types/form';
 
-const VALUES = ['Admin', 'User'] as const;
+const VALUES = ['Owner', 'Admin', 'User'] as const;
 
 export const Roles = z.enum(VALUES);
 

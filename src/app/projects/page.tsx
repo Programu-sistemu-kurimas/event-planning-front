@@ -1,6 +1,7 @@
 import { Button, Container } from '@/components/common';
 import { API_ROUTES, ROUTES } from '@/constants';
 import { apiFetch } from '@/lib/apiFetch';
+import { applyRouteParams } from '@/lib/utils';
 import { projectsSchema } from '@/schemas';
 import Link from 'next/link';
 
@@ -34,7 +35,12 @@ const ProjectsPage = async () => {
                                 className="text-xl xl:text-3xl hover:underline"
                             >
                                 <Link
-                                    href={`${ROUTES.PROJECTS.BASE}/${projectId}`}
+                                    href={applyRouteParams(
+                                        ROUTES.PROJECTS.SINGLE_PROJECT,
+                                        {
+                                            id: projectId,
+                                        }
+                                    )}
                                 >
                                     {name}
                                 </Link>

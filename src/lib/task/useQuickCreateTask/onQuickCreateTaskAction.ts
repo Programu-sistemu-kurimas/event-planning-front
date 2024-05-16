@@ -5,6 +5,7 @@ import { quickCreateTaskFormSchema } from './schema';
 import { FormState } from '@/types/form';
 import { apiFetch } from '@/lib/apiFetch';
 import { revalidatePath } from 'next/cache';
+import { applyRouteParams } from '@/lib/utils';
 
 export const onQuickCreateTaskAction = async (
     _prevState: FormState,
@@ -41,9 +42,13 @@ export const onQuickCreateTaskAction = async (
         };
     }
 
-    const projectId = validatedFormData.data.projectId;
+    const id = validatedFormData.data.projectId;
 
-    revalidatePath(`${API_ROUTES.PROJECT.BASE}/${projectId}`);
+    revalidatePath(
+        applyRouteParams(API_ROUTES.PROJECT.GET_BY_ID, {
+            id,
+        })
+    );
 
     return {
         errorMessage: '',

@@ -5,9 +5,10 @@ import {
 } from '@/components/modal';
 import { WorkersList } from '@/components/project';
 import { TasksList, QuickTaskCreationForm } from '@/components/task';
-import { API_ROUTES, ModalKeys } from '@/constants';
+import { API_ROUTES, ModalKeys, ROUTES } from '@/constants';
 import { apiFetch } from '@/lib/apiFetch';
 import { getModalLink } from '@/lib/modalLink';
+import { applyRouteParams } from '@/lib/utils';
 import { detailedProjectSchema } from '@/schemas';
 import Link from 'next/link';
 import { FunctionComponent } from 'react';
@@ -21,7 +22,11 @@ interface ProjectPageProps {
 const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
     params: { id },
 }) => {
-    const res = await apiFetch(`${API_ROUTES.PROJECT.BASE}/${id}`);
+    const res = await apiFetch(
+        applyRouteParams(API_ROUTES.PROJECT.GET_BY_ID, {
+            id,
+        })
+    );
 
     if (!res.ok) {
         throw new Error('Klaida gaunant projekto informaciją');
@@ -62,9 +67,21 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                         <div className="flex flex-col gap-8">
                             <TasksList tasks={project.tasks} />
                             <QuickTaskCreationForm />
-                            <Button className="self-start" variant="secondary">
-                                Sukurti užduotį
-                            </Button>
+                            <Link
+                                href={applyRouteParams(
+                                    ROUTES.PROJECTS.CREATE_TASK,
+                                    {
+                                        id,
+                                    }
+                                )}
+                            >
+                                <Button
+                                    className="self-start"
+                                    variant="secondary"
+                                >
+                                    Sukurti užduotį
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
