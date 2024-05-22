@@ -16,7 +16,7 @@ const ProjectsPage = async () => {
     const validatedData = projectsSchema.safeParse(data);
 
     if (!validatedData.success) {
-        throw new Error('Klaida nuskaitant projektų duomenimis');
+        throw new Error('Klaida nuskaitant projektų duomenis');
     }
 
     const projects = validatedData.data;
@@ -48,11 +48,16 @@ const ProjectsPage = async () => {
                         ))}
                     </ul>
                 </div>
-                <Link href={ROUTES.PROJECTS.CREATE}>
-                    <Button variant="secondary" className="w-full sm:w-auto">
-                        Sukurti naują projektą
-                    </Button>
-                </Link>
+                <div className="flex items-center justify-start gap-x-4 gap-y-2 sm:flex-row flex-col">
+                    <Link href={ROUTES.PROJECTS.CREATE}>
+                        <Button variant="secondary">
+                            Sukurti naują projektą
+                        </Button>
+                    </Link>
+                    <Link href={ROUTES.PROJECTS.ARCHIVED}>
+                        <Button variant="primary">Archyvuoti projektai</Button>
+                    </Link>
+                </div>
             </div>
         </Container>
     );

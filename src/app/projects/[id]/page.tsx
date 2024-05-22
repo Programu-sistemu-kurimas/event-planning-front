@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import { Button, Container } from '@/components/common';
 import {
     AddWorkerToProjectModal,
+    ArchiveProjectModal,
     DeleteProjectModal,
     SetWorkerRoleModal,
 } from '@/components/modal';
@@ -100,6 +101,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
             <AddWorkerToProjectModal />
             <SetWorkerRoleModal />
             <DeleteProjectModal />
+            <ArchiveProjectModal />
         </>
     );
 };

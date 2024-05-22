@@ -6,9 +6,11 @@ import Link from 'next/link';
 const ProjectPurgeActions = () => {
     return (
         <div className="flex items-center gap-4">
-            <Button size="sm" variant="darkGreen">
-                Archyvuoti
-            </Button>
+            <Link href={getModalLink(ModalKeys.ArchiveProject)}>
+                <Button size="sm" variant="darkGreen">
+                    Archyvuoti
+                </Button>
+            </Link>
             <Link href={getModalLink(ModalKeys.DeleteProject)}>
                 <Button size="sm" variant="red">
                     Ištrinti
