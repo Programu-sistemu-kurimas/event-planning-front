@@ -12,6 +12,7 @@ export const API_ROUTES = {
         SET_ROLE: 'projects/setRole',
         DELETE: 'projects/{id}',
         ARCHIVE: 'projects/{id}',
+        GUESTS: 'projects/guests?projectId={id}',
     },
     TASK: {
         CREATE: 'task/create',

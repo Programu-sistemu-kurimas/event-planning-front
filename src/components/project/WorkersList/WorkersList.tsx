@@ -20,7 +20,7 @@ const WorkersList: FunctionComponent<WorkersListProps> = ({ workers }) => {
                 <div className="grid grid-cols-2 text-lg lg:text-2xl font-normal gap-y-4 gap-x-6">
                     {workers.map(({ id, name, surname, role }) => (
                         <Fragment key={`worker-${id}`}>
-                            <p className="truncate">
+                            <p className="truncate capitalize">
                                 {name} {surname}
                             </p>
                             <div className="flex items-center gap-2">

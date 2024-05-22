@@ -19,7 +19,7 @@ const TasksList: FunctionComponent<TasksListProps> = ({ tasks }) => {
                             className="flex items-center gap-2"
                             key={`task-${id}`}
                         >
-                            <p className="text-lg lg:text-2xl font-normal">
+                            <p className="text-lg lg:text-2xl font-normal first-letter:capitalize">
                                 {taskName}
                             </p>
                             <Link

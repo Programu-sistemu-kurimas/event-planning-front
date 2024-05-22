@@ -7,13 +7,17 @@ import {
     DeleteTaskModal,
     SetWorkerRoleModal,
 } from '@/components/modal';
-import { ProjectPurgeActions, WorkersList } from '@/components/project';
+import {
+    GuestsList,
+    ProjectPurgeActions,
+    WorkersList,
+} from '@/components/project';
 import { TasksList, QuickTaskCreationForm } from '@/components/task';
 import { API_ROUTES, ModalKeys, ROUTES, Roles } from '@/constants';
 import { apiFetch } from '@/lib/apiFetch';
 import { getModalLink } from '@/lib/modalLink';
 import { applyRouteParams } from '@/lib/utils';
-import { detailedProjectSchema } from '@/schemas';
+import { detailedProjectSchema, guestsSchema } from '@/schemas';
 import Link from 'next/link';
 import { FunctionComponent } from 'react';
 
@@ -23,9 +27,7 @@ interface ProjectPageProps {
     };
 }
 
-const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
-    params: { id },
-}) => {
+const getProjectData = async (id: string) => {
     const res = await apiFetch(
         applyRouteParams(API_ROUTES.PROJECT.GET_BY_ID, {
             id,
@@ -43,7 +45,37 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
         throw new Error('Klaida nuskaitant projekto duomenis');
     }
 
-    const project = validatedData.data;
+    return validatedData.data;
+};
+
+const getGuestsData = async (id: string) => {
+    const res = await apiFetch(
+        applyRouteParams(API_ROUTES.PROJECT.GUESTS, {
+            id,
+        })
+    );
+
+    if (!res.ok) {
+        throw new Error('Klaida gaunant projekto svečius');
+    }
+
+    const data = await res.json();
+    const validatedData = guestsSchema.safeParse(data);
+
+    if (!validatedData.success) {
+        throw new Error('Klaida nuskaitant projekto svečius');
+    }
+
+    return validatedData.data;
+};
+
+const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
+    params: { id },
+}) => {
+    const projectData = getProjectData(id);
+    const guestData = getGuestsData(id);
+
+    const [project, guests] = await Promise.all([projectData, guestData]);
 
     const session = await auth();
 
@@ -95,6 +127,9 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                                     Sukurti užduotį
                                 </Button>
                             </Link>
+                        </div>
+                        <div className="flex flex-col gap-8">
+                            <GuestsList guests={guests} />
                         </div>
                     </div>
                 </div>
