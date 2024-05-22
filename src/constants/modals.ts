@@ -4,4 +4,5 @@ export enum ModalKeys {
     SetWorkerRole = 'setWorkerRole',
     DeleteProject = 'deleteProject',
     ArchiveProject = 'archiveProject',
+    RemoveTask = 'removeTask',
 }

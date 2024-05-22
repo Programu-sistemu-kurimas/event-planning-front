@@ -4,6 +4,7 @@ import {
     AddWorkerToProjectModal,
     ArchiveProjectModal,
     DeleteProjectModal,
+    DeleteTaskModal,
     SetWorkerRoleModal,
 } from '@/components/modal';
 import { ProjectPurgeActions, WorkersList } from '@/components/project';
@@ -102,6 +103,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
             <SetWorkerRoleModal />
             <DeleteProjectModal />
             <ArchiveProjectModal />
+            <DeleteTaskModal />
         </>
     );
 };
