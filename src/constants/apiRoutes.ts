@@ -13,6 +13,7 @@ export const API_ROUTES = {
         DELETE: 'projects/{id}',
         ARCHIVE: 'projects/{id}',
         GUESTS: 'projects/guests?projectId={id}',
+        CREATE_GUEST: 'guest/create',
     },
     TASK: {
         CREATE: 'task/create',

@@ -8,6 +8,7 @@ import {
     SetWorkerRoleModal,
 } from '@/components/modal';
 import {
+    GuestCreationForm,
     GuestsList,
     ProjectPurgeActions,
     WorkersList,
@@ -131,6 +132,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                         </div>
                         <div className="flex flex-col gap-8">
                             <GuestsList guests={guests} />
+                            <GuestCreationForm />
                         </div>
                     </div>
                 </div>

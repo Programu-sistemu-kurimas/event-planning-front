@@ -6,3 +6,4 @@ export { default as DeleteProjectForm } from './DeleteProjectForm';
 export { default as ProjectPurgeActions } from './ProjectPurgeActions';
 export { default as ArchiveProjectForm } from './ArchiveProjectForm';
 export { default as GuestsList } from './GuestsList';
+export { default as GuestCreationForm } from './GuestCreationForm';
