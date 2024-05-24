@@ -32,6 +32,7 @@ const WorkersList: FunctionComponent<WorkersListProps> = ({ workers }) => {
                                             userId: id,
                                         }
                                     )}
+                                    scroll={false}
                                 >
                                     <EditIcon />
                                 </Link>

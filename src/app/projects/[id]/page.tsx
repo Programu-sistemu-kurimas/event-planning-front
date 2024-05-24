@@ -100,6 +100,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                                 href={getModalLink(
                                     ModalKeys.AddWorkerToProject
                                 )}
+                                scroll={false}
                             >
                                 <Button
                                     className="self-start"

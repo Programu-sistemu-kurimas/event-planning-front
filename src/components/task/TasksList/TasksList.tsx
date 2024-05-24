@@ -26,6 +26,7 @@ const TasksList: FunctionComponent<TasksListProps> = ({ tasks }) => {
                                 href={getModalLink(ModalKeys.RemoveTask, {
                                     taskId: id,
                                 })}
+                                scroll={false}
                                 className="hover:bg-transparent/20 rounded px-2"
                             >
                                 -
