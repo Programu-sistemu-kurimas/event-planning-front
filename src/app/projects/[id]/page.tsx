@@ -113,7 +113,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                             </Link>
                         </div>
                         <div className="flex flex-col gap-8">
-                            <TasksList tasks={project.tasks} />
+                            <TasksList tasks={project.tasks} projectId={id} />
                             <QuickTaskCreationForm />
                             <Link
                                 href={applyRouteParams(

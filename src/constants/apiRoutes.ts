@@ -20,5 +20,7 @@ export const API_ROUTES = {
     TASK: {
         CREATE: 'task/create',
         DELETE: 'task/{id}',
+        UPDATE: 'task/update',
+        GET_BY_ID: 'task/{id}',
     },
 };

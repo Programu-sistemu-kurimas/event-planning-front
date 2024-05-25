@@ -8,4 +8,16 @@ export const taskSchema = z.object({
     state: TaskStates,
 });
 
+export const assignedUserSchema = z.object({
+    name: z.string(),
+});
+
+export const detailTaskSchema = z.object({
+    id: z.string(),
+    taskName: z.string(),
+    taskDescription: z.string().nullable(),
+    state: TaskStates,
+    assignedUsers: z.array(assignedUserSchema),
+});
+
 export const tasksSchema = z.array(taskSchema);
