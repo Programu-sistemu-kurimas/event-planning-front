@@ -8,3 +8,5 @@ export { default as ArchiveProjectForm } from './ArchiveProjectForm';
 export { default as GuestsList } from './GuestsList';
 export { default as GuestCreationForm } from './GuestCreationForm';
 export { default as DeleteGuestForm } from './DeleteGuestForm';
+export { default as ProjectName } from './ProjectName';
+export { default as ChangeProjectNameForm } from './ChangeProjectNameForm';

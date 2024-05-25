@@ -8,6 +8,7 @@ export const API_ROUTES = {
         BASE: 'projects',
         GET_BY_ID: 'projects/{id}',
         CREATE: 'projects/create',
+        UPDATE: 'projects/update',
         ADD_USER: 'projects/addUser',
         SET_ROLE: 'projects/setRole',
         DELETE: 'projects/{id}',

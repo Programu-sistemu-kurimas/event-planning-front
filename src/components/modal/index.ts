@@ -4,3 +4,4 @@ export { default as DeleteProjectModal } from './DeleteProjectModal';
 export { default as ArchiveProjectModal } from './ArchiveProjectModal';
 export { default as DeleteTaskModal } from './DeleteTaskModal';
 export { default as DeleteGuestModal } from './DeleteGuestModal';
+export { default as ChangeProjectNameModal } from './ChangeProjectNameModal';

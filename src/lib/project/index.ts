@@ -5,3 +5,4 @@ export { useDeleteProject } from './deleteProject';
 export { useArchiveProject } from './archiveProject';
 export { useCreateGuest } from './createGuest';
 export { useDeleteGuest } from './deleteGuest';
+export { useChangeProjectName } from './changeProjectName';

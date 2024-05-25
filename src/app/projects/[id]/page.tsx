@@ -3,6 +3,7 @@ import { Button, Container } from '@/components/common';
 import {
     AddWorkerToProjectModal,
     ArchiveProjectModal,
+    ChangeProjectNameModal,
     DeleteGuestModal,
     DeleteProjectModal,
     DeleteTaskModal,
@@ -11,6 +12,7 @@ import {
 import {
     GuestCreationForm,
     GuestsList,
+    ProjectName,
     ProjectPurgeActions,
     WorkersList,
 } from '@/components/project';
@@ -90,9 +92,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
             <Container className="pb-16">
                 <div className="flex flex-col gap-16">
                     <div className="flex justify-between items-center gap-56">
-                        <h1 className="text-2xl xl:text-4xl font-bold truncate">
-                            {project.projectName}
-                        </h1>
+                        <ProjectName name={project.projectName} />
                         {isOwner && <ProjectPurgeActions />}
                     </div>
                     <div className="flex flex-col gap-16">
@@ -144,6 +144,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
             <ArchiveProjectModal />
             <DeleteTaskModal />
             <DeleteGuestModal />
+            <ChangeProjectNameModal />
         </>
     );
 };
