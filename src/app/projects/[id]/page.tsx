@@ -3,6 +3,7 @@ import { Button, Container } from '@/components/common';
 import {
     AddWorkerToProjectModal,
     ArchiveProjectModal,
+    DeleteGuestModal,
     DeleteProjectModal,
     DeleteTaskModal,
     SetWorkerRoleModal,
@@ -142,6 +143,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
             <DeleteProjectModal />
             <ArchiveProjectModal />
             <DeleteTaskModal />
+            <DeleteGuestModal />
         </>
     );
 };

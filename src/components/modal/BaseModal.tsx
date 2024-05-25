@@ -21,7 +21,9 @@ const BaseModal: FunctionComponent<BaseModalProps> = ({
     const isModalVisible = searchParams.get(modalKey);
 
     const closeModal = useCallback(() => {
-        router.push(pathname);
+        router.push(pathname, {
+            scroll: false,
+        });
         modalRef.current?.close();
     }, [pathname, router]);
 

@@ -5,4 +5,5 @@ export enum ModalKeys {
     DeleteProject = 'deleteProject',
     ArchiveProject = 'archiveProject',
     RemoveTask = 'removeTask',
+    RemoveGuest = 'removeGuest',
 }

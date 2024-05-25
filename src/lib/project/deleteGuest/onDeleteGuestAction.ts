@@ -1,18 +1,19 @@
 'use server';
 
-import { API_ROUTES } from '@/constants';
-import { quickCreateTaskFormSchema } from './schema';
+import { API_ROUTES, ROUTES } from '@/constants';
+import { deleteGuestFormSchema } from './schema';
 import { FormState } from '@/types/form';
 import { apiFetch } from '@/lib/apiFetch';
 import { revalidatePath } from 'next/cache';
 import { applyRouteParams } from '@/lib/utils';
+import { redirect } from 'next/navigation';
 
-export const onQuickCreateTaskAction = async (
+export const onDeleteGuestAction = async (
     _prevState: FormState,
     data: FormData
 ): Promise<FormState> => {
     const formData = Object.fromEntries(data);
-    const validatedFormData = quickCreateTaskFormSchema.safeParse(formData);
+    const validatedFormData = deleteGuestFormSchema.safeParse(formData);
 
     if (!validatedFormData.success) {
         const fields: Record<string, string> = {};
@@ -27,17 +28,17 @@ export const onQuickCreateTaskAction = async (
         };
     }
 
-    const res = await apiFetch(API_ROUTES.TASK.CREATE, {
-        method: 'POST',
+    const res = await apiFetch(API_ROUTES.PROJECT.DELETE_GUEST, {
+        method: 'DELETE',
         body: JSON.stringify({
+            guestId: validatedFormData.data.guestId,
             projectId: validatedFormData.data.projectId,
-            taskName: validatedFormData.data.taskName,
         }),
     });
 
     if (!res.ok) {
         return {
-            errorMessage: 'Įvyko klaida sukuriant užduotį',
+            errorMessage: 'Įvyko klaida ištrinant svečią',
             fields: validatedFormData.data,
         };
     }
@@ -45,12 +46,14 @@ export const onQuickCreateTaskAction = async (
     const id = validatedFormData.data.projectId;
 
     revalidatePath(
-        applyRouteParams(API_ROUTES.PROJECT.GET_BY_ID, {
+        applyRouteParams(API_ROUTES.PROJECT.GUESTS, {
             id,
         })
     );
 
-    return {
-        errorMessage: '',
-    };
+    redirect(
+        applyRouteParams(ROUTES.PROJECTS.SINGLE_PROJECT, {
+            id,
+        })
+    );
 };
