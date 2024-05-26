@@ -7,9 +7,13 @@ import { Fragment, FunctionComponent } from 'react';
 
 interface WorkersListProps {
     workers: Worker[];
+    isEditable?: boolean;
 }
 
-const WorkersList: FunctionComponent<WorkersListProps> = ({ workers }) => {
+const WorkersList: FunctionComponent<WorkersListProps> = ({
+    workers,
+    isEditable = true,
+}) => {
     return (
         <div className="flex flex-col gap-8 max-w-xl">
             <div className="grid grid-cols-2 text-xl lg:text-3xl font-normal gap-6">
@@ -25,17 +29,19 @@ const WorkersList: FunctionComponent<WorkersListProps> = ({ workers }) => {
                             </p>
                             <div className="flex items-center gap-2">
                                 <p>{role}</p>
-                                <Link
-                                    href={getModalLink(
-                                        ModalKeys.SetWorkerRole,
-                                        {
-                                            userId: id,
-                                        }
-                                    )}
-                                    scroll={false}
-                                >
-                                    <EditIcon />
-                                </Link>
+                                {isEditable && (
+                                    <Link
+                                        href={getModalLink(
+                                            ModalKeys.SetWorkerRole,
+                                            {
+                                                userId: id,
+                                            }
+                                        )}
+                                        scroll={false}
+                                    >
+                                        <EditIcon />
+                                    </Link>
+                                )}
                             </div>
                         </Fragment>
                     ))}

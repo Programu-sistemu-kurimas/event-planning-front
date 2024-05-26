@@ -8,6 +8,7 @@ export const ROUTES = {
         CREATE: '/projects/create',
         CREATE_TASK: '/projects/{id}/createTask',
         ARCHIVED: '/projects/archived',
+        SINGLE_ARCHIVED_PROJECT: '/projects/archived/{id}',
         SINGLE_TASK: '/projects/{id}/task/{taskId}',
     },
     AUTH: {

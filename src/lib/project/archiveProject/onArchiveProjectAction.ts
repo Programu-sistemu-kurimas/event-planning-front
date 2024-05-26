@@ -33,7 +33,7 @@ export const onArchiveProjectAction = async (
             id: validatedFormData.data.projectId,
         }),
         {
-            method: 'PUT',
+            method: 'POST',
         }
     );
 
