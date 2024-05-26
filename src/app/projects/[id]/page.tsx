@@ -7,6 +7,7 @@ import {
     DeleteGuestModal,
     DeleteProjectModal,
     DeleteTaskModal,
+    RemoveWorkerFromProjectModal,
     SetWorkerRoleModal,
 } from '@/components/modal';
 import {
@@ -14,11 +15,11 @@ import {
     GuestsList,
     ProjectName,
     ProjectPurgeActions,
+    WorkerManagementActions,
     WorkersList,
 } from '@/components/project';
 import { TasksList, QuickTaskCreationForm } from '@/components/task';
-import { ModalKeys, ROUTES, Roles } from '@/constants';
-import { getModalLink } from '@/lib/modalLink';
+import { ROUTES, Roles } from '@/constants';
 import { applyRouteParams } from '@/lib/utils';
 import { getGuestsData, getProjectData } from '@/server';
 import Link from 'next/link';
@@ -55,19 +56,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
                     <div className="flex flex-col gap-16">
                         <div className="flex flex-col gap-8">
                             <WorkersList workers={project.workers} />
-                            <Link
-                                href={getModalLink(
-                                    ModalKeys.AddWorkerToProject
-                                )}
-                                scroll={false}
-                            >
-                                <Button
-                                    className="self-start"
-                                    variant="secondary"
-                                >
-                                    Pridėti darbuotoją
-                                </Button>
-                            </Link>
+                            <WorkerManagementActions />
                         </div>
                         <div className="flex flex-col gap-8">
                             <TasksList tasks={project.tasks} projectId={id} />
@@ -102,6 +91,7 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
             <DeleteTaskModal />
             <DeleteGuestModal />
             <ChangeProjectNameModal />
+            <RemoveWorkerFromProjectModal />
         </>
     );
 };

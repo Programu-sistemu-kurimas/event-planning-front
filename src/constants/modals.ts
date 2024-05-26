@@ -8,4 +8,5 @@ export enum ModalKeys {
     RemoveTask = 'removeTask',
     RemoveGuest = 'removeGuest',
     ChangeProjectName = 'changeProjectName',
+    RemoveWorkerFromProject = 'removeWorkerFromProject',
 }

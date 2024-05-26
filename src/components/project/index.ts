@@ -11,3 +11,5 @@ export { default as DeleteGuestForm } from './DeleteGuestForm';
 export { default as ProjectName } from './ProjectName';
 export { default as ChangeProjectNameForm } from './ChangeProjectNameForm';
 export { default as UnarchiveProjectForm } from './UnarchiveProjectForm';
+export { default as WorkerManagementActions } from './WorkerManagementActions';
+export { default as RemoveWorkerFromProjectForm } from './RemoveWorkerFromProjectForm';

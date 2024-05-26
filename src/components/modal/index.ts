@@ -6,3 +6,4 @@ export { default as DeleteTaskModal } from './DeleteTaskModal';
 export { default as DeleteGuestModal } from './DeleteGuestModal';
 export { default as ChangeProjectNameModal } from './ChangeProjectNameModal';
 export { default as UnarchiveProjectModal } from './UnarchiveProjectModal';
+export { default as RemoveWorkerFromProjectModal } from './RemoveWorkerFromProjectModal';
