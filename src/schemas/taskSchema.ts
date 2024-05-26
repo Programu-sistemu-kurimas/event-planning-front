@@ -1,5 +1,6 @@
 import { TaskStates } from '@/constants';
 import { z } from 'zod';
+import { workerSchema } from './workerSchema';
 
 export const taskSchema = z.object({
     id: z.string(),
@@ -8,16 +9,12 @@ export const taskSchema = z.object({
     state: TaskStates,
 });
 
-export const assignedUserSchema = z.object({
-    name: z.string(),
-});
-
 export const detailTaskSchema = z.object({
     id: z.string(),
     taskName: z.string(),
     taskDescription: z.string().nullable(),
     state: TaskStates,
-    assignedUsers: z.array(assignedUserSchema),
+    assignedUsers: z.array(workerSchema),
 });
 
 export const tasksSchema = z.array(taskSchema);

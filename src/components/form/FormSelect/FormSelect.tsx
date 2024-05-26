@@ -40,7 +40,7 @@ const FormSelect: FunctionComponent<FormSelectProps> = ({
             )}
             <select
                 className={cn(
-                    'font-normal text-xl w-full px-6 border-primary py-4 rounded-xl text-white border-x-8 bg-primary outline-none',
+                    'font-normal text-xl w-full px-6 border-primary py-4 rounded-3xl text-white border-x-8 bg-primary outline-none',
                     'placeholder:text-center placeholder:text-xl placeholder:lg:text-3xl placeholder:text-secondaryLight',
                     className
                 )}

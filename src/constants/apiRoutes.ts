@@ -22,5 +22,6 @@ export const API_ROUTES = {
         DELETE: 'task/{id}',
         UPDATE: 'task/update',
         GET_BY_ID: 'task/{id}',
+        ADD_USER: 'task/addUser',
     },
 };

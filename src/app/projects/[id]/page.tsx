@@ -17,11 +17,10 @@ import {
     WorkersList,
 } from '@/components/project';
 import { TasksList, QuickTaskCreationForm } from '@/components/task';
-import { API_ROUTES, ModalKeys, ROUTES, Roles } from '@/constants';
-import { apiFetch } from '@/lib/apiFetch';
+import { ModalKeys, ROUTES, Roles } from '@/constants';
 import { getModalLink } from '@/lib/modalLink';
 import { applyRouteParams } from '@/lib/utils';
-import { detailedProjectSchema, guestsSchema } from '@/schemas';
+import { getGuestsData, getProjectData } from '@/server';
 import Link from 'next/link';
 import { FunctionComponent } from 'react';
 
@@ -30,48 +29,6 @@ interface ProjectPageProps {
         id: string;
     };
 }
-
-const getProjectData = async (id: string) => {
-    const res = await apiFetch(
-        applyRouteParams(API_ROUTES.PROJECT.GET_BY_ID, {
-            id,
-        })
-    );
-
-    if (!res.ok) {
-        throw new Error('Klaida gaunant projekto informaciją');
-    }
-
-    const data = await res.json();
-    const validatedData = detailedProjectSchema.safeParse(data);
-
-    if (!validatedData.success) {
-        throw new Error('Klaida nuskaitant projekto duomenis');
-    }
-
-    return validatedData.data;
-};
-
-const getGuestsData = async (id: string) => {
-    const res = await apiFetch(
-        applyRouteParams(API_ROUTES.PROJECT.GUESTS, {
-            id,
-        })
-    );
-
-    if (!res.ok) {
-        throw new Error('Klaida gaunant projekto svečius');
-    }
-
-    const data = await res.json();
-    const validatedData = guestsSchema.safeParse(data);
-
-    if (!validatedData.success) {
-        throw new Error('Klaida nuskaitant projekto svečius');
-    }
-
-    return validatedData.data;
-};
 
 const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
     params: { id },

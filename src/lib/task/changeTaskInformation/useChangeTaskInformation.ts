@@ -5,7 +5,9 @@ import { changeTaskInformationFormSchema } from './schema';
 import { useFormState } from 'react-dom';
 import { onChangeTaskInformationAction } from './onChangeTaskInformationAction';
 
-type CreateTaskFormValues = z.infer<typeof changeTaskInformationFormSchema>;
+type ChangeTaskInformationValues = z.infer<
+    typeof changeTaskInformationFormSchema
+>;
 
 interface UseChangeTaskInformationProps {
     projectId: string;
@@ -24,7 +26,7 @@ export const useChangeTaskInformation = ({
         errorMessage: '',
     });
 
-    const form = useForm<CreateTaskFormValues>({
+    const form = useForm<ChangeTaskInformationValues>({
         resolver: zodResolver(changeTaskInformationFormSchema),
         defaultValues: {
             projectId,
