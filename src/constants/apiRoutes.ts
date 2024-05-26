@@ -3,6 +3,8 @@ export const API_ROUTES = {
         REGISTER: 'users/register',
         LOGIN: 'users/login',
         PROJECTS: 'users/projects',
+        INFO: 'users',
+        UPDATE: 'users/update',
     },
     PROJECT: {
         BASE: 'projects',

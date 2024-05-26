@@ -15,13 +15,16 @@ const baseNavbarItemStyle = 'text-xl xl:text-3xl font-normal hover:underline';
 const Navbar: FunctionComponent<NavbarProps> = ({ user }) => {
     return (
         <nav className="flex items-center gap-8">
-            <ul>
-                <Link href={ROUTES.ABOUT_PAGE} className={baseNavbarItemStyle}>
-                    Apie programėlę
-                </Link>
-            </ul>
             {user && (
                 <>
+                    <ul>
+                        <Link
+                            href={ROUTES.MY_PROFILE}
+                            className={baseNavbarItemStyle}
+                        >
+                            Mano profilis
+                        </Link>
+                    </ul>
                     <ul>
                         <Link
                             href={ROUTES.PROJECTS.BASE}

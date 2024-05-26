@@ -1,0 +1,1 @@
+export { useUpdateProfileInfo } from './useUpdateProfileInfo';

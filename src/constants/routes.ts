@@ -1,6 +1,7 @@
 export const ROUTES = {
     HOME: '/',
     ABOUT_PAGE: '/about',
+    MY_PROFILE: '/my-profile',
     PROJECTS: {
         BASE: '/projects',
         SINGLE_PROJECT: '/projects/{id}',

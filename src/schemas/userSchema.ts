@@ -7,3 +7,12 @@ export const userSchema = z.object({
     email: z.string().email(),
     token: z.string(),
 });
+
+export const usersSchema = z.array(
+    z.object({
+        id: z.string(),
+        userName: z.string(),
+        userSurname: z.string(),
+        email: z.string().email(),
+    })
+);
