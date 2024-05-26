@@ -1,4 +1,5 @@
 import { Button, Container } from '@/components/common';
+import { UnarchiveProjectModal } from '@/components/modal';
 
 import { GuestsList, WorkersList } from '@/components/project';
 import { TasksList } from '@/components/task';
@@ -35,7 +36,7 @@ const ArchivedProjectPage: FunctionComponent<ProjectPageProps> = async ({
                             scroll={false}
                         >
                             <Button size="sm" variant="darkGreen">
-                                Išarchyvuoti
+                                Atkurti
                             </Button>
                         </Link>
                     </div>
@@ -59,6 +60,7 @@ const ArchivedProjectPage: FunctionComponent<ProjectPageProps> = async ({
                     </div>
                 </div>
             </Container>
+            <UnarchiveProjectModal />
         </>
     );
 };
