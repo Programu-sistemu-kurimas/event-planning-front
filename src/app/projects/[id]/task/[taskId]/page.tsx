@@ -2,6 +2,7 @@ import { Container } from '@/components/common';
 import {
     AssignedUsersList,
     ChangeTaskInformationForm,
+    ChangeTaskStateForm,
 } from '@/components/task';
 import { getProjectData, getTaskData } from '@/server';
 import { FunctionComponent } from 'react';
@@ -39,6 +40,7 @@ const TaskPage: FunctionComponent<TaskPageProps> = async ({
                         assignedWorkers={task.assignedUsers}
                         projectWorkers={project.workers}
                     />
+                    <ChangeTaskStateForm currentState={task.state} />
                 </div>
             </div>
         </Container>

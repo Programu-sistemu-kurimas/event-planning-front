@@ -21,7 +21,9 @@ const AssignedUsersList: FunctionComponent<TasksListProps> = ({
 
     return (
         <div className="flex flex-col gap-8">
-            <span className="text-xl lg:text-3xl font-normal">Darbuotojai</span>
+            <span className="text-xl lg:text-3xl font-normal text-secondaryLight">
+                Darbuotojai
+            </span>
             <div className="flex flex-col gap-4 max-w-3xl">
                 <div>
                     {assignedWorkers.map(({ id, name, surname }) => (
