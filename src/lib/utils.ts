@@ -1,3 +1,4 @@
+import { Roles } from '@/constants';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -17,3 +18,7 @@ export const applyRouteParams = (
         return currentTemplate.replace(`{${key}}`, String(params[key]));
     }, routeTemplate);
 };
+
+export const isOwner = (role: string) => role === Roles.Enum.Owner;
+
+export const isAdmin = (role: string) => role === Roles.Enum.Admin;

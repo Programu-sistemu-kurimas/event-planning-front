@@ -6,9 +6,13 @@ import { FunctionComponent } from 'react';
 
 interface GuestsListProps {
     guests: Guest[];
+    isEditable?: boolean;
 }
 
-const GuestsList: FunctionComponent<GuestsListProps> = ({ guests }) => {
+const GuestsList: FunctionComponent<GuestsListProps> = ({
+    guests,
+    isEditable = true,
+}) => {
     return (
         <div className="flex flex-col gap-8 max-w-xl">
             <span className="text-xl lg:text-3xl font-normal">Svečiai</span>
@@ -25,15 +29,17 @@ const GuestsList: FunctionComponent<GuestsListProps> = ({ guests }) => {
                             >
                                 {guestName} {guestSurname}
                             </p>
-                            <Link
-                                href={getModalLink(ModalKeys.RemoveGuest, {
-                                    guestId: id,
-                                })}
-                                scroll={false}
-                                className="hover:bg-transparent/20 rounded px-2"
-                            >
-                                -
-                            </Link>
+                            {isEditable && (
+                                <Link
+                                    href={getModalLink(ModalKeys.RemoveGuest, {
+                                        guestId: id,
+                                    })}
+                                    scroll={false}
+                                    className="hover:bg-transparent/20 rounded px-2"
+                                >
+                                    -
+                                </Link>
+                            )}
                         </div>
                     ))}
                 </div>

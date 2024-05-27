@@ -19,8 +19,8 @@ import {
     WorkersList,
 } from '@/components/project';
 import { TasksList, QuickTaskCreationForm } from '@/components/task';
-import { ROUTES, Roles } from '@/constants';
-import { applyRouteParams } from '@/lib/utils';
+import { ROUTES } from '@/constants';
+import { applyRouteParams, isAdmin, isOwner } from '@/lib/utils';
 import { getGuestsData, getProjectData } from '@/server';
 import Link from 'next/link';
 import { FunctionComponent } from 'react';
@@ -41,44 +41,66 @@ const ProjectPage: FunctionComponent<ProjectPageProps> = async ({
 
     const session = await auth();
 
-    const isOwner =
-        project.workers.find((worker) => worker.email === session?.user?.email)
-            ?.role === Roles.Enum.Owner;
+    const loggedInWorker = project.workers.find(
+        (worker) => worker.email === session?.user?.email
+    );
+
+    const isUserOwner = Boolean(loggedInWorker && isOwner(loggedInWorker.role));
+    const isUserAdmin = Boolean(loggedInWorker && isAdmin(loggedInWorker.role));
 
     return (
         <>
             <Container className="pb-16">
                 <div className="flex flex-col gap-16">
                     <div className="flex justify-between items-center gap-56">
-                        <ProjectName name={project.projectName} />
-                        {isOwner && <ProjectPurgeActions />}
+                        <ProjectName
+                            name={project.projectName}
+                            isEditable={isUserOwner || isUserAdmin}
+                        />
+                        {isUserOwner && <ProjectPurgeActions />}
                     </div>
                     <div className="flex flex-col gap-16">
                         <div className="flex flex-col gap-8">
-                            <WorkersList workers={project.workers} />
-                            <WorkerManagementActions />
+                            <WorkersList
+                                workers={project.workers}
+                                isEditable={isUserAdmin || isUserOwner}
+                            />
+                            {(isUserOwner || isUserAdmin) && (
+                                <WorkerManagementActions />
+                            )}
                         </div>
                         <div className="flex flex-col gap-8">
-                            <TasksList tasks={project.tasks} projectId={id} />
-                            <QuickTaskCreationForm />
-                            <Link
-                                href={applyRouteParams(
-                                    ROUTES.PROJECTS.CREATE_TASK,
-                                    {
-                                        id,
-                                    }
-                                )}
-                            >
-                                <Button
-                                    className="self-start"
-                                    variant="secondary"
-                                >
-                                    Sukurti užduotį
-                                </Button>
-                            </Link>
+                            <TasksList
+                                tasks={project.tasks}
+                                projectId={id}
+                                isEditable={isUserAdmin || isUserOwner}
+                            />
+                            {(isUserAdmin || isUserOwner) && (
+                                <>
+                                    <QuickTaskCreationForm />
+                                    <Link
+                                        href={applyRouteParams(
+                                            ROUTES.PROJECTS.CREATE_TASK,
+                                            {
+                                                id,
+                                            }
+                                        )}
+                                    >
+                                        <Button
+                                            className="self-start"
+                                            variant="secondary"
+                                        >
+                                            Sukurti užduotį
+                                        </Button>
+                                    </Link>
+                                </>
+                            )}
                         </div>
                         <div className="flex flex-col gap-8">
-                            <GuestsList guests={guests} />
+                            <GuestsList
+                                guests={guests}
+                                isEditable={isUserAdmin || isUserOwner}
+                            />
                             <GuestCreationForm />
                         </div>
                     </div>

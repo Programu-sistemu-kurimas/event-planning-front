@@ -6,20 +6,26 @@ import { FunctionComponent } from 'react';
 
 interface ProjectNameProps {
     name: string;
+    isEditable: boolean;
 }
 
-const ProjectName: FunctionComponent<ProjectNameProps> = ({ name }) => {
+const ProjectName: FunctionComponent<ProjectNameProps> = ({
+    name,
+    isEditable,
+}) => {
     return (
         <div className="flex items-center gap-2">
             <h1 className="text-2xl xl:text-4xl font-bold truncate">{name}</h1>
-            <Link
-                href={getModalLink(ModalKeys.ChangeProjectName, {
-                    currentProjectName: name,
-                })}
-                scroll={false}
-            >
-                <EditIcon width={24} height={24} />
-            </Link>
+            {isEditable && (
+                <Link
+                    href={getModalLink(ModalKeys.ChangeProjectName, {
+                        currentProjectName: name,
+                    })}
+                    scroll={false}
+                >
+                    <EditIcon width={24} height={24} />
+                </Link>
+            )}
         </div>
     );
 };

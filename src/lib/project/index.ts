@@ -8,3 +8,4 @@ export { useDeleteGuest } from './deleteGuest';
 export { useChangeProjectName } from './changeProjectName';
 export { useUnarchiveProject } from './unarchiveProject';
 export { useRemoveWorkerFromProject } from './removeWorkerFromProject';
+export { useRole } from './useRole';

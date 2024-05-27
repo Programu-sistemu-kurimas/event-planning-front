@@ -9,12 +9,14 @@ interface TasksListProps {
     tasks: Task[];
     projectId: string;
     isEditable?: boolean;
+    isLink?: boolean;
 }
 
 const TasksList: FunctionComponent<TasksListProps> = ({
     tasks,
     projectId,
     isEditable = true,
+    isLink = true,
 }) => {
     return (
         <div className="flex flex-col gap-8 max-w-xl">
@@ -26,7 +28,7 @@ const TasksList: FunctionComponent<TasksListProps> = ({
                             className="flex items-center gap-2"
                             key={`task-${id}`}
                         >
-                            {isEditable ? (
+                            {isLink ? (
                                 <Link
                                     href={applyRouteParams(
                                         ROUTES.PROJECTS.SINGLE_TASK,

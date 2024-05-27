@@ -1,6 +1,8 @@
 import { EditIcon } from '@/components/icon';
 import { ModalKeys } from '@/constants';
+import { roleHierarchy } from '@/constants/roles';
 import { getModalLink } from '@/lib/modalLink';
+import { isOwner } from '@/lib/utils';
 import type { Worker } from '@/types/worker';
 import Link from 'next/link';
 import { Fragment, FunctionComponent } from 'react';
@@ -14,6 +16,10 @@ const WorkersList: FunctionComponent<WorkersListProps> = ({
     workers,
     isEditable = true,
 }) => {
+    const sortedWorkers = workers.sort(
+        (a, b) => roleHierarchy[a.role] - roleHierarchy[b.role]
+    );
+
     return (
         <div className="flex flex-col gap-8 max-w-xl">
             <div className="grid grid-cols-2 text-xl lg:text-3xl font-normal gap-6">
@@ -22,14 +28,14 @@ const WorkersList: FunctionComponent<WorkersListProps> = ({
             </div>
             <div className="min-h-28 max-h-56 overflow-y-auto">
                 <div className="grid grid-cols-2 text-lg lg:text-2xl font-normal gap-y-4 gap-x-6">
-                    {workers.map(({ id, name, surname, role }) => (
+                    {sortedWorkers.map(({ id, name, surname, role }) => (
                         <Fragment key={`worker-${id}`}>
                             <p className="truncate capitalize">
                                 {name} {surname}
                             </p>
                             <div className="flex items-center gap-2">
                                 <p>{role}</p>
-                                {isEditable && (
+                                {!isOwner(role) && isEditable && (
                                     <Link
                                         href={getModalLink(
                                             ModalKeys.SetWorkerRole,

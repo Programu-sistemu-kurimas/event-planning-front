@@ -51,11 +51,12 @@ const ArchivedProjectPage: FunctionComponent<ProjectPageProps> = async ({
                             <TasksList
                                 tasks={project.tasks}
                                 projectId={id}
+                                isLink={false}
                                 isEditable={false}
                             />
                         </div>
                         <div className="flex flex-col gap-8">
-                            <GuestsList guests={guests} />
+                            <GuestsList guests={guests} isEditable={false} />
                         </div>
                     </div>
                 </div>

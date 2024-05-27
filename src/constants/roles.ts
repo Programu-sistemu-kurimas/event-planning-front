@@ -15,3 +15,9 @@ export const ROLE_OPTIONS: Option[] = [
         value: Roles.Enum.Admin,
     },
 ];
+
+export const roleHierarchy: Record<string, number> = {
+    Owner: 1,
+    Admin: 2,
+    User: 3,
+};
